@@ -23,6 +23,10 @@ DATABASE = "gtfs"
 TABLE = "vehicle_positions_parquet"
 S3_OUTPUT = "s3://gtfs-data-bucket-emanuele/athena-results/"
 
+@app.get("/")
+def read_root():
+    return {"message": "API ATAC Rome è attiva! Usa /bus_positions per i dati."}
+
 def run_athena_query(query: str):
     response = athena.start_query_execution(
         QueryString=query,
